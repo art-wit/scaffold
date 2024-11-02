@@ -5,7 +5,11 @@
     "start": "meteor run",
     "test": "meteor test --once --driver-package meteortesting:mocha",
     "test-app": "TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha",
-    "visualize": "meteor --production --extra-packages bundle-visualizer"
+    "visualize": "meteor --production --extra-packages bundle-visualizer",
+    "build": "meteor build ../output/svelte --directory",
+    "vite:setup-env": "cross-env-shell METEOR_PACKAGE_DIRS=\"../../packages/\" BUILD_METEOR_VITE_DEPENDENCY='true'",
+    "vite:start": "npm run vite:setup-env meteor npm start",
+    "vite:build": "npm run vite:setup-env meteor npm run build"
   },
   "dependencies": {
     "@babel/runtime": "^7.17.9",
@@ -15,6 +19,7 @@
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^4.0.0",
+    "cross-env": "^7.0.3",
     "vite": "^5.4.10"
   },
   "meteor": {
