@@ -6,12 +6,13 @@ export default defineConfig({
     plugins: [
         meteor({
           clientEntry: 'imports/ui/main.js',
-          // stubValidation: {
-          //   warnOnly: true,
-          // },
+          stubValidation: {
+            warnOnly: true,
+          },
           enableExperimentalFeatures: true, // Required to enable server bundling.
         }),
         svelte({
+          configFile: 'svelte.config.mjs'
           /* plugin options */
         })
     ],

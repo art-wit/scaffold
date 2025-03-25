@@ -1,0 +1,36 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug: Meteor",
+      "presentation": {
+        "hidden": false,
+        "order": 1
+      },
+      "runtimeExecutable": "meteor",
+      "runtimeArgs": [
+        "--exclude-archs=web.browser.legacy,web.cordova",
+        "--raw-logs"
+      ],
+      "env": {
+        "ROOT_URL": "http://localhost:3000"
+      },
+      "outputCapture": "std",
+      "restart": true,
+      "timeout": 60000
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Program",
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    }
+  ]
+}
