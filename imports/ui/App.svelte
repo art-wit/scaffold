@@ -1,8 +1,10 @@
 <script>
-  import { RuntimeCollection } from '/imports/api/runtime';
-  import { useSubscribe, useTracker } from '/lib/MeteorSvelte.svelte';
   import { Meteor } from "meteor/meteor";
-  import { LinksCollection } from '../api/links';
+  import { RuntimeCollection } from '../api/runtime';
+  import { useSubscribe, useTracker } from '/lib/MeteorSvelte.svelte';
+  import { LinksCollection } from '/imports/api/links';
+
+  Mon
 
   let myClickCount = 0;
   const addToCounter = () => {

@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "baseUrl": ".",
+    "paths": {
+      "/*": ["./*"],
+    },
+    "checkJs": true,
+    "preserveSymlinks": true,
+  }
+}

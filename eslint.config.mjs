@@ -28,9 +28,6 @@ export default defineConfig([
        */
       'prefer-const': 'error',
       'prefer-template': 'error', // Proper string concatenation
-      'import/newline-after-import': 'error',
-      'import/first': 'error',
-      // 'import/no-unresolved': 'off',
       'padding-line-between-statements': [
         'error',
         { 'blankLine': 'always', 'prev': 'function', 'next': '*' },
@@ -38,6 +35,9 @@ export default defineConfig([
         { 'blankLine': 'always', 'prev': '*', 'next': 'multiline-const' },
         { 'blankLine': 'always', 'prev': 'multiline-const', 'next': '*' },
       ],
+      'import/newline-after-import': 'error',
+      'import/first': 'error',
+      'import/no-unresolved': 'off',
     },
   },
 ]);
