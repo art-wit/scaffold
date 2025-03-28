@@ -11,7 +11,7 @@
         console.log('Click method call completed!', { error, response })
         if (error) {
             alert(error.message);
-        }})
+      }})
   }
 
   const links = useTracker(() => LinksCollection.find({}).fetch());

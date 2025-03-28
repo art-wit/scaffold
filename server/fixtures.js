@@ -1,6 +1,10 @@
 import { Meteor } from 'meteor/meteor';
-import { LinksCollection } from '/imports/api/links';
 import { RuntimeCollection } from '/imports/api/runtime';
+
+test;
+
+import { LinksCollection } from '../imports/api/links';
+import { test } from '../imports/api/runtime';
 
 async function insertLink({ title, url }) {
   await LinksCollection.insertAsync({ title, url, createdAt: new Date() });
@@ -12,7 +16,7 @@ Meteor.publish('links.all', function publishLinksAll() {
 
 Meteor.startup(async () => {
   // If the Links collection is empty, add some data.
-  if (await LinksCollection.find().countAsync() === 0) {
+  if ((await LinksCollection.find().countAsync()) === 0) {
     await insertLink({
       title: 'Do the Tutorial',
       url: 'https://svelte-tutorial.meteor.com/',
@@ -34,26 +38,30 @@ Meteor.startup(async () => {
     });
   }
 
-  if (await RuntimeCollection.find({ _id: 'clicks' }).countAsync() === 0) {
+  if ((await RuntimeCollection.find({ _id: 'clicks' }).countAsync()) === 0) {
     await RuntimeCollection.insertAsync({ _id: 'clicks', value: 0 });
   }
 
   Meteor.methods({
     'runtime.click': async () => {
-        const { value } = (await RuntimeCollection.findOneAsync({ _id: 'clicks' }) || { value: 0 });
-        await RuntimeCollection.updateAsync({ _id: 'clicks' }, { $set: { _id: 'clicks', value: value + 1 } });
-    }
+      const { value } = (await RuntimeCollection.findOneAsync({
+        _id: 'clicks',
+      })) || { value: 0 };
+      await RuntimeCollection.updateAsync(
+        { _id: 'clicks' },
+        { $set: { _id: 'clicks', value: value + 1 } },
+      );
+    },
   });
 
   Meteor.methods({
     async 'links.reverse-title'(linkId) {
       const { title } = await LinksCollection.findOneAsync(linkId);
       await LinksCollection.updateAsync(linkId, {
-        $set: { title: title.split('').reverse().join('') }
+        $set: { title: title.split('').reverse().join('') },
       });
-    }
+    },
   });
-  
-  console.log(`Meteor server started up successfully: ${Meteor.absoluteUrl()}`)
 
+  console.log(`Meteor server started up successfully: ${Meteor.absoluteUrl()}`);
 });
