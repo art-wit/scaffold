@@ -2,6 +2,10 @@ import { defineConfig } from 'eslint/config';
 import globals from 'globals';
 import js from '@eslint/js';
 import prettier from 'eslint-plugin-prettier/recommended';
+import { flatConfigs } from 'eslint-plugin-import';
+
+const jsConfig = js.configs.recommended;
+const importer = flatConfigs.recommended;
 
 export default defineConfig([
   {
@@ -10,19 +14,30 @@ export default defineConfig([
     languageOptions: {
       globals: { ...globals.browser, ...globals.node, ...globals.meteor },
     },
-    plugins: {
-      js,
-      ...prettier.plugins,
-    },
-    extends: [js.configs.recommended],
+    extends: [
+      /**
+       * Plugins
+       */
+      jsConfig,
+      prettier,
+      importer,
+    ],
     rules: {
-      ...prettier.rules,
       /**
        * Custom rules here...
        */
-      'sort-keys': 0,
       'prefer-const': 'error',
-      'prefer-template': 'error', // String concatenation
+      'prefer-template': 'error', // Proper string concatenation
+      'import/newline-after-import': 'error',
+      'import/first': 'error',
+      // 'import/no-unresolved': 'off',
+      'padding-line-between-statements': [
+        'error',
+        { 'blankLine': 'always', 'prev': 'function', 'next': '*' },
+        { 'blankLine': 'always', 'prev': '*', 'next': 'function' },
+        { 'blankLine': 'always', 'prev': '*', 'next': 'multiline-const' },
+        { 'blankLine': 'always', 'prev': 'multiline-const', 'next': '*' },
+      ],
     },
   },
 ]);

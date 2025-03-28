@@ -5,6 +5,6 @@
  *
  * More info: https://github.com/JorgenVatle/meteor-vite#lazy-loaded-meteor-packages
  **/
-import "../_vite-bundle/server/_entry.mjs"
+import '../_vite-bundle/server/_entry.mjs';
 /** End of vite auto-imports **/
 import './fixtures';
