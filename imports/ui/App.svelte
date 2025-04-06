@@ -1,8 +1,8 @@
 <script>
   import { Meteor } from 'meteor/meteor';
   import { useSubscribe, useTracker } from '/lib/MeteorSvelte.svelte';
-  import { RuntimeCollection } from 'imports/api';
-  import { LinksCollection } from 'imports/api';
+  import { RuntimeCollection } from '/imports/api';
+  import { LinksCollection } from '/imports/api';
 
   let myClickCount = 0;
 
