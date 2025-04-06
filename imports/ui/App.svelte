@@ -3,6 +3,7 @@
   import Home from './pages/Home.svelte';
   import Products from './pages/Products.svelte';
   import Settings from './pages/Settings.svelte';
+  import Navigation from './layouts/Navigation.svelte';
 
   const routes = [
     {
@@ -20,8 +21,6 @@
 </script>
 
 <div class="container">
-  <a href="/">Home</a>
-  <a href="/products">Products</a>
-  <a href="/settings">Settings</a>
+  <Navigation />
   <Router {routes} />
 </div>
