@@ -1,18 +1,6 @@
 import { Meteor } from 'meteor/meteor';
-import { RuntimeCollection, test, LinksCollection } from '/imports/api';
+import { RuntimeCollection, LinksCollection } from '/imports/api';
 
-const a = `b${test}`;
-const a1 = `b${test}`;
-[1, 2, 3].map((a) => {
-  console.log(test);
-});
-
-// [1, 2, 3].map((a) => {
-//   console.log(a);
-// });
-// const er = ({ a }) => {
-//   a + a1;
-// };
 async function insertLink({ title, url }) {
   await LinksCollection.insertAsync({ title, url, createdAt: new Date() });
 }
