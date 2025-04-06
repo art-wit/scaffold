@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "start": "meteor run",
+    "start-trace": "TOOL_NODE_FLAGS=--trace-warnings meteor run",
     "test": "meteor test --once --driver-package meteortesting:mocha",
     "test-app": "TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha",
     "visualize": "meteor --production --extra-packages bundle-visualizer",
@@ -24,9 +25,11 @@
     "eslint-config-prettier": "^10.1.1",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-prettier": "^5.2.5",
+    "eslint-plugin-svelte": "^3.3.3",
     "globals": "^16.0.0",
     "meteor-vite": "^3.5.0",
-    "prettier": "3.5.3"
+    "prettier": "3.5.3",
+    "prettier-plugin-svelte": "^3.3.3"
   },
   "meteor": {
     "mainModule": {
@@ -37,5 +40,18 @@
     "vite": {
       "configFile": "vite.config.mjs"
     }
+  },
+  "prettier": {
+    "plugins": ["prettier-plugin-svelte"],
+    "printWidth": 80,
+    "tabWidth": 2,
+    "singleQuote": true,
+    "quoteProps": "preserve",
+    "trailingComma": "all",
+    "bracketSameLine": true,
+    "arrowParens": "always",
+    "svelteSortOrder": "options-scripts-markup-styles",
+    "svelteStrictMode": true,
+    "svelteIndentScriptAndStyle": true
   }
 }

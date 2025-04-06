@@ -7,4 +7,5 @@
     "source.fixAll.eslint": "always"
   },
   "eslint.format.enable": true,
+  "eslint.validate": ["javascript", "svelte"],
 }

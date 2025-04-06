@@ -6,8 +6,8 @@ export default {
   onwarn: (warning, handler) => handler(warning),
   // plugin options
   vitePlugin: {
-      exclude: [],
-      // experimental options
-      experimental: {}
-  }
+    exclude: [],
+    // experimental options
+    experimental: {},
+  },
 };

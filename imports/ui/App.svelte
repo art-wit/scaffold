@@ -1,30 +1,32 @@
 <script>
-  import { Meteor } from "meteor/meteor";
-  import { RuntimeCollection } from '../api/runtime';
+  import { Meteor } from 'meteor/meteor';
   import { useSubscribe, useTracker } from '/lib/MeteorSvelte.svelte';
-  import { LinksCollection } from '/imports/api/links';
-
-  Mon
+  import { RuntimeCollection } from 'imports/api';
+  import { LinksCollection } from 'imports/api';
 
   let myClickCount = 0;
+
   const addToCounter = () => {
     myClickCount += 1;
     Meteor.call('runtime.click', (error, response) => {
-        console.log('Click method call completed!', { error, response })
-        if (error) {
-            alert(error.message);
-      }})
-  }
+      console.log('Click method call completed!', { error, response });
+      if (error) {
+        alert(error.message);
+      }
+    });
+  };
 
   const links = useTracker(() => LinksCollection.find({}).fetch());
-  const clicks = useTracker(() => RuntimeCollection.findOne({ _id: 'clicks' }))
-  const serverTime = useTracker(() => RuntimeCollection.findOne({ _id: 'time' }));
+  const clicks = useTracker(() => RuntimeCollection.findOne({ _id: 'clicks' }));
+  const serverTime = useTracker(() =>
+    RuntimeCollection.findOne({ _id: 'time' }),
+  );
+
   const linksReady = useSubscribe('links.all');
   const runtimeReady = useSubscribe('runtime');
-
   const reverseTitle = (linkId) => {
-    Meteor.call('links.reverse-title', linkId)
-  }
+    Meteor.call('links.reverse-title', linkId);
+  };
 </script>
 
 <div class="container">
@@ -52,7 +54,10 @@
       {#each $links as link (link._id)}
         <li>
           <a href={link.url} target="_blank" rel="noreferrer">{link.title}</a>
-          <button on:click={() => { reverseTitle(link._id) }}>Reverse</button>
+          <button
+            on:click={() => {
+              reverseTitle(link._id);
+            }}>Reverse</button>
         </li>
       {/each}
     </ul>

@@ -1,27 +1,18 @@
-// import { Meteor } from 'meteor/meteor';
-import { RuntimeCollection, test } from '/imports/api/runtime';
-import { LinksCollection } from '/imports/api/links';
 import { Meteor } from 'meteor/meteor';
-import '/imports/api';
+import { RuntimeCollection, test, LinksCollection } from '/imports/api';
 
-// debugger;
-// const a = `b${test}`;
-// const a1 = `b${test}`;
-// [1, 2, 3].map((a) => {
-console.log(test);
-// });
+const a = `b${test}`;
+const a1 = `b${test}`;
+[1, 2, 3].map((a) => {
+  console.log(test);
+});
+
 // [1, 2, 3].map((a) => {
 //   console.log(a);
 // });
-
 // const er = ({ a }) => {
 //   a + a1;
 // };
-
-// const er2 = ({ a2 }) => {
-//   a + a2;
-// };
-
 async function insertLink({ title, url }) {
   await LinksCollection.insertAsync({ title, url, createdAt: new Date() });
 }
