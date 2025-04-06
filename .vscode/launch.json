@@ -5,9 +5,18 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Debug: ESLint in Meteor",
       "type": "node",
       "request": "launch",
-      "name": "Debug: Meteor",
+      "cwd": "/home/art/Workspaces/my/scaffold",
+      "runtimeExecutable": "npx",
+      "args": ["eslint", "."],
+      "console": "integratedTerminal",
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug: Meteor App",
       "presentation": {
         "hidden": false,
         "order": 1
@@ -24,13 +33,5 @@
       "restart": true,
       "timeout": 60000
     },
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "Launch Program",
-      "skipFiles": [
-        "<node_internals>/**"
-      ]
-    }
   ]
 }
