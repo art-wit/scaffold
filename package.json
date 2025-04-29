@@ -2,7 +2,7 @@
   "name": "meteor-app",
   "private": true,
   "scripts": {
-    "start": "meteor run",
+    "start": "meteor run --port 3005",
     "start-trace": "TOOL_NODE_FLAGS=--trace-warnings meteor run",
     "test": "meteor test --once --driver-package meteortesting:mocha",
     "test-app": "TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha",
