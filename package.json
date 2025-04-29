@@ -31,7 +31,8 @@
     "globals": "^16.0.0",
     "meteor-vite": "^3.5.0",
     "prettier": "3.5.3",
-    "prettier-plugin-svelte": "^3.3.3"
+    "prettier-plugin-svelte": "^3.3.3",
+    "rollup-plugin-visualizer": "^5.14.0"
   },
   "meteor": {
     "mainModule": {
