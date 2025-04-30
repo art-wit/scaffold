@@ -1,32 +1,40 @@
 <script>
-  import { Router } from '@mateothegreat/svelte5-router';
+  import { Router, goto } from '@mateothegreat/svelte5-router';
   import BaseLayout from './layouts/BaseLayout.svelte';
   import Login from './pages/Login.svelte';
   import Home from './pages/Home.svelte';
-  import Products from './pages/Products.svelte';
-  import Settings from './pages/Settings.svelte';
-  import Navigation from './components/Navigation.svelte';
-
+  import ProtectedRouter from './pages/protected/Routes.svelte';
   const routes = [
     {
-      component: Home,
+      path: '',
+      hooks: {
+        pre: () => {
+          // goto('/login');
+        },
+      },
     },
     {
       path: 'login',
       component: Login,
     },
     {
-      path: 'products',
-      component: Products,
+      path: 'home',
+      component: Home,
     },
     {
-      path: 'settings',
-      component: Settings,
+      path: 'protected',
+      component: ProtectedRouter,
+      hooks: {
+        pre() {
+          console.log('!!!Protected!!!');
+          goto('/login');
+          return false;
+        },
+      },
     },
   ];
 </script>
 
 <BaseLayout>
-  <Navigation />
-  <Router {routes} />
+  <Router id="open-router" {routes} />
 </BaseLayout>
