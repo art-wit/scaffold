@@ -17,3 +17,6 @@ ecmascript@0.16.10            # Enable ECMAScript2015+ syntax in app code
 hot-module-replacement@0.5.4  # Rebuilds the client if there is a change on the client without restarting the server
 
 jorgenvatle:vite              # Enables Vite bundler
+service-configuration
+accounts-google
+accounts-password

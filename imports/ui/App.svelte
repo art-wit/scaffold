@@ -9,13 +9,20 @@
       path: '',
       hooks: {
         pre: () => {
-          // goto('/login');
+          goto('/login');
         },
       },
     },
     {
       path: 'login',
       component: Login,
+      hooks: {
+        pre: () => {
+          if (Meteor.userId()) {
+            goto('/protected');
+          }
+        },
+      },
     },
     {
       path: 'home',
@@ -26,9 +33,11 @@
       component: ProtectedRouter,
       hooks: {
         pre() {
-          console.log('!!!Protected!!!');
-          goto('/login');
-          return false;
+          if (!Meteor.userId()) {
+            goto('/login');
+            return false;
+          }
+          return true;
         },
       },
     },

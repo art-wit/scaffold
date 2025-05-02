@@ -17,4 +17,4 @@
 </script>
 
 <Navigation />
-<Router id="protected-router" basePath="/protected" {routes} />
+<Router id="protected-router" basePath="protected/" {routes} />

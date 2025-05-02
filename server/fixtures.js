@@ -1,4 +1,5 @@
 import { Meteor } from 'meteor/meteor';
+import { Accounts } from 'meteor/accounts-base';
 import { RuntimeCollection, LinksCollection } from '/imports/api';
 
 async function insertLink({ title, url }) {
@@ -9,6 +10,39 @@ Meteor.publish('links.all', function publishLinksAll() {
   return LinksCollection.find();
 });
 Meteor.startup(async () => {
+  if ((await Meteor.users.find().countAsync()) === 0) {
+    const adminId = await Meteor.users.insertAsync({
+      'username': 'admin',
+      'profile': {
+        'firstName': 'Support',
+        'lastName': 'Admin',
+      },
+      'emails': [
+        {
+          'address': 'admin@example.com',
+          'verified': true,
+        },
+      ],
+    });
+
+    const clientId = await Meteor.users.insertAsync({
+      'username': 'client',
+      'profile': {
+        'firstName': 'Adam',
+        'lastName': 'Smith',
+      },
+      'emails': [
+        {
+          'address': 'client@example.com',
+          'verified': true,
+        },
+      ],
+    });
+
+    debugger;
+    await Accounts.setPasswordAsync(adminId, 'Passw0rd');
+    await Accounts.setPasswordAsync(clientId, 'Passw0rd');
+  }
   // If the Links collection is empty, add some data.
   if ((await LinksCollection.find().countAsync()) === 0) {
     await insertLink({
