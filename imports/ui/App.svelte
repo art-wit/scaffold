@@ -2,8 +2,7 @@
   import { Router, goto } from '@mateothegreat/svelte5-router';
   import BaseLayout from './layouts/BaseLayout.svelte';
   import Login from './pages/Login.svelte';
-  import Home from './pages/Home.svelte';
-  import ProtectedRouter from './pages/protected/Routes.svelte';
+  import ClientRouter from './pages/client/Routes.svelte';
   const routes = [
     {
       path: '',
@@ -19,18 +18,15 @@
       hooks: {
         pre: () => {
           if (Meteor.userId()) {
-            goto('/protected');
+            goto('/client');
           }
+          return true;
         },
       },
     },
     {
-      path: 'home',
-      component: Home,
-    },
-    {
-      path: 'protected',
-      component: ProtectedRouter,
+      path: 'client',
+      component: ClientRouter,
       hooks: {
         pre() {
           if (!Meteor.userId()) {

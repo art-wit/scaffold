@@ -1,56 +1,64 @@
 <script>
-  import { Router, route, goto } from '@mateothegreat/svelte5-router';
-  import {
-    BottomNav,
-    BottomNavItem,
-    Skeleton,
-    ImagePlaceholder,
-  } from 'flowbite-svelte';
+  import { goto as originalGoto } from '@mateothegreat/svelte5-router';
+  import { BottomNav, BottomNavItem } from 'flowbite-svelte';
   import {
     HomeSolid,
     WalletSolid,
     AdjustmentsVerticalOutline,
     UserCircleSolid,
+    ChartMixedDollarOutline,
+    ChartPieSolid,
   } from 'flowbite-svelte-icons';
+  import { writable } from 'svelte/store';
 
-  let activeUrl;
-  $: activeUrl = window.location.pathname;
+  const currentPath = writable(window.location.pathname);
+
+  $: activeUrl = $currentPath;
+
+  function goto(url) {
+    originalGoto(url);
+    currentPath.set(url);
+  }
 </script>
-
-<Skeleton class="py-4" />
-<ImagePlaceholder class="pb-20" />
 
 <BottomNav
   {activeUrl}
-  position="absolute"
+  navType="card"
   classInner="grid-cols-4"
-  classActive="font-bold text-green-500 hover:text-green-900 dark:hover:text-green-700 dark:text-green-300">
-  <BottomNavItem btnName="Home" href="/home">
-    <HomeSolid />
+  classActive="font-bold text-green-500 hover:text-green-900 dark:hover:text-green-300 dark:text-green-300">
+  <BottomNavItem
+    btnName="Chart"
+    on:click={(e) => {
+      e.preventDefault();
+      goto('/client/statistics');
+    }}
+    href="/client/statistics">
+    <ChartPieSolid />
   </BottomNavItem>
   <BottomNavItem
-    on:click={() => {
-      // activeUrl = '/protected/products';
-      goto('/protected/products');
+    on:click={(e) => {
+      e.preventDefault();
+      goto('/client/products');
     }}
-    href="/protected/products"
+    href="/client/products"
     btnName="Products">
     <WalletSolid />
   </BottomNavItem>
   <BottomNavItem
-    on:click={() => {
-      // activeUrl = '/protected/settings';
-      goto('/protected/settings');
+    on:click={(e) => {
+      e.preventDefault();
+      goto('/client/settings');
     }}
-    href="/protected/settinegs"
+    href="/client/settings"
     btnName="Settings">
     <AdjustmentsVerticalOutline />
   </BottomNavItem>
-  <BottomNavItem btnName="Accordion" href="/docs/components/accordion">
+  <BottomNavItem
+    btnName="Logout"
+    on:click={(e) => {
+      e.preventDefault();
+      Meteor.logout(() => goto('/login'));
+    }}>
     <UserCircleSolid />
   </BottomNavItem>
 </BottomNav>
-
-<a use:route href="/home"> Home </a>
-<a use:route href="/protected/products"> Products </a>s
-<a use:route href="/protected/settings"> Settings </a>

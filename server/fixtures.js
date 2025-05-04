@@ -39,7 +39,6 @@ Meteor.startup(async () => {
       ],
     });
 
-    debugger;
     await Accounts.setPasswordAsync(adminId, 'Passw0rd');
     await Accounts.setPasswordAsync(clientId, 'Passw0rd');
   }
